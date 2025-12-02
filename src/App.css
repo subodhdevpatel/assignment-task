@@ -91,6 +91,9 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 102;
 }
 
 .app-header h1 {
@@ -102,7 +105,6 @@ body {
   display: flex;
   flex: 1;
   overflow: hidden;
-  padding-right: 20px;
 }
 
 .map-section {
@@ -115,7 +117,6 @@ body {
 }
 
 .summary-section {
-  width: 320px;
   display: flex;
   flex-direction: column;
   z-index: 10;
@@ -124,6 +125,8 @@ body {
 @media (max-width: 768px) {
   .app-main {
     flex-direction: column;
+    padding-right: 0;
+    overflow: auto;
   }
 
   .summary-section {
