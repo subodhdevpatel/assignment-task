@@ -79,3 +79,22 @@ To run the end-to-end tests using Playwright:
 
 - **WebSocket Updates**: Real-time status updates are not implemented.
 - **Unit Tests**: Comprehensive unit test coverage is a future improvement.
+
+## Screenshots
+Seat details:
+<img width="1600" height="731" alt="image" src="https://github.com/user-attachments/assets/3dd9524d-3663-446c-beef-3583ebca4954" />
+
+Seat selection:
+<img width="1600" height="731" alt="image" src="https://github.com/user-attachments/assets/7c4045b9-c782-4b5c-bdea-672ee7f287ac" />
+
+Dark mode with price heat map
+<img width="1600" height="731" alt="image" src="https://github.com/user-attachments/assets/c9178dd0-1df8-4780-a424-29212658a2d1" />
+
+Rendered with approax 15k seats by generating seats using script
+<img width="1600" height="731" alt="image" src="https://github.com/user-attachments/assets/53838715-aa4c-4d85-8154-a5a982360517" />
+
+15K seats rendered with price heat map
+<img width="1600" height="731" alt="image" src="https://github.com/user-attachments/assets/b70c14c5-591b-4cd8-9cf4-7f2910f99268" />
+
+E2E tests using playwright
+<img width="806" height="726" alt="image" src="https://github.com/user-attachments/assets/5df29ffa-6ce2-4932-80a1-7831a3661e9e" />
