@@ -1,73 +1,47 @@
-# React + TypeScript + Vite
+# Interactive Event Seating Map
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript application for selecting seats in an event venue.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Interactive Map**: Rendered using SVG for scalability and accessibility.
+- **Seat Selection**: Click to select up to 8 seats.
+- **Live Summary**: View selected seats and total price.
+- **Persistence**: Selections are saved to `localStorage`.
+- **Accessibility**: Keyboard navigation (Tab/Enter/Space) and ARIA labels.
+- **Responsive**: Adapts to desktop and mobile viewports.
+- **Performance**: Optimized for large venues (tested with 15k seats).
 
-## React Compiler
+## Architecture & Trade-offs
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **SVG Rendering**: Chosen for its built-in accessibility (DOM nodes) and ease of styling with CSS. For extremely large datasets (>50k), Canvas might be more performant, but SVG handles 15k well with `React.memo`.
+- **Context API**: Used for state management (`BookingContext`) to avoid prop drilling and simplify state sharing between the Map and Summary.
+- **Vanilla CSS**: Used CSS Modules for scoped styling without the overhead of a CSS-in-JS library, keeping the bundle size small.
+- **Vite**: Selected for fast development server and optimized build.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+1.  Install dependencies:
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+    ```bash
+    pnpm install
+    ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+2.  Run the development server:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+    ```bash
+    pnpm dev
+    ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3.  Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Testing Performance
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+To test with a large dataset (15k seats):
+
+1.  Run the generator script:
+    ```bash
+    npx tsx scripts/generate-large-venue.ts
+    ```
+2.  Update `src/context/BookingContext.tsx` to fetch `/venue-large.json` instead of `/venue.json`.
+3.  Reload the app.

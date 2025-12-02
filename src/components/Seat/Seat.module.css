@@ -1,0 +1,42 @@
+.seat {
+  cursor: pointer;
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.seat:focus {
+  outline: none;
+  stroke: var(--text-primary);
+  stroke-width: 2px;
+}
+
+.available {
+  fill: var(--seat-available-fill);
+  stroke: var(--seat-available-stroke);
+}
+
+.available:hover {
+  fill: var(--seat-available-hover);
+}
+
+.reserved {
+  fill: var(--seat-reserved-fill);
+  stroke: var(--seat-reserved-stroke);
+  cursor: not-allowed;
+}
+
+.sold {
+  fill: var(--seat-sold-fill);
+  stroke: var(--seat-sold-stroke);
+  cursor: not-allowed;
+}
+
+.held {
+  fill: var(--seat-held-fill);
+  stroke: var(--seat-held-stroke);
+  cursor: not-allowed;
+}
+
+.selected {
+  fill: var(--seat-selected-fill);
+  stroke: var(--seat-selected-stroke);
+}
